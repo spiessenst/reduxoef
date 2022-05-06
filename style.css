@@ -6,3 +6,34 @@
   color: #2c3e50;
   margin-top: 60px;
 }
+
+
+#colors{
+ margin-top: 50px;
+max-width: 350px;
+ 
+
+}
+
+
+
+
+.color{
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  align-items: center;
+  margin-bottom: 30px;
+ }
+
+p{
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  color: red;
+}
+.colortile{
+  width: 100px;
+  height: 100px;
+ background-color: red;
+}
