@@ -9,12 +9,9 @@ const colorSlice = createSlice({
     addColor(state, { payload }) {
       state.push(payload);
     },
-    changeColor(state, { payload }) {
-      console.log(payload);
-
-      state.map((obj) =>
-        obj.id === payload.id ? { ...obj, hex: payload.hex } : obj
-      );
+    changeColor(state = initialState, { payload }) {
+      const obj = state.find((color) => color.id === payload.id);
+      obj.hex = payload.hex;
     },
   },
 });

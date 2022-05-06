@@ -4,20 +4,19 @@ import { addColor, changeColor } from "./data/colorinfo";
 import { nanoid } from "@reduxjs/toolkit";
 
 function render() {
-  document.querySelector("#colors").innerHTML = store
+  document.querySelector("ul").innerHTML = store
     .getState()
     .colorState.map(
-      (colorinfo) => `<div class="color" >
+      (colorinfo) => `<li>
     <div class="colortile" style="background-color: ${colorinfo.hex}"></div>
     <p contenteditable="true" style="color: ${colorinfo.hex}">${colorinfo.colorname}</p>
     <input data-id="${colorinfo.id}" type="color" name="colorveld" id="colorveld_${colorinfo.id}" class="colorveld" value=${colorinfo.hex} />
-    </div>`
+    </li>`
     )
     .join("");
 }
 
 render();
-
 store.subscribe(render);
 
 const form = document.querySelector("form");
@@ -36,13 +35,10 @@ form.onsubmit = function (e) {
   form.reset();
 };
 
-document.querySelector(".colors").oninput = (e) => {
+document.querySelector("ul").addEventListener("change", (e) => {
   if (e.target.classList.contains("colorveld")) {
     store.dispatch(
-      changeColor({
-        id: e.target.dataset.id,
-        hex: document.getElementById(`colorveld_${e.target.dataset.id}`).value,
-      })
+      changeColor({ id: e.target.dataset.id, hex: e.target.value })
     );
   }
-};
+});
