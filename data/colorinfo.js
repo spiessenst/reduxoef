@@ -9,8 +9,15 @@ const colorSlice = createSlice({
     addColor(state, { payload }) {
       state.push(payload);
     },
+    changeColor(state, { payload }) {
+      console.log(payload);
+
+      state.map((obj) =>
+        obj.id === payload.id ? { ...obj, hex: payload.hex } : obj
+      );
+    },
   },
 });
 
 export default colorSlice;
-export const { addColor } = colorSlice.actions;
+export const { addColor, changeColor } = colorSlice.actions;
